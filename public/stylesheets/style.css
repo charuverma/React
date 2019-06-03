@@ -1,0 +1,24 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.card{
+  border:2px solid black;
+  width:400px;
+  padding-left:20px;
+  margin-left:400px;
+}
+.card-title{
+  margin-left:150px;
+  color:rgb(0, 81, 255);
+}
+.card-text
+{
+  margin-left:100px;
+  color:rgb(150, 92, 17);
+}
+.card-link1{
+  margin-left:140px;
+}
+
