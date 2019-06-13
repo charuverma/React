@@ -45,7 +45,6 @@ exports.save = function(req) {
 };
  
   exports.login =function(req){
-    console.log("Wanttt");
     console.log(req.body);
     return Registers.findOne({
     where :{

@@ -65,21 +65,6 @@ exports.save = function(req) {
     });
   }
 };
-
-/* exports.list = function(req) {
-  return Registers.findAll({
-    limit: 10
-  });
-};
-
-exports.delete = function(req) {
-  return Registers.destroy({
-    where: {
-      id: req.body.id
-    }
-  });
-}; */
-
 exports.get = function(req) {
   return Registers.findOne({
     where: {

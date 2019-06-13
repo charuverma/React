@@ -47,44 +47,38 @@ sequelize
 
 exports.save = (function(req)  {
    if(req.body.id) {
-    return personaldetails.update({
-      firstname: req.body.firstname,
-      Lastname:req.body.Lastname,
-      emailid:req.body.emailid,
-      BusinessProfile:req.body.BusinessProfile,
-      CompanyName:req.body.CompanyName,
-      JobTitle:req.body.JobTitle,
-      street:req.body.street,
-      city:req.body.city,
-      State:req.body.State,
-      zip:req.body.zip,
-      Country:req.body.Country,
-      MobileNo:req.body.MobileNo,
-      Address:req.body.Address
-    }, {
+    return personaldetails.update(
+      req.body, {
       where: {
         id: req.body.id
       }
     });
   } else { 
-    return personaldetails.create({
-      firstname: req.body.firstname,
-      Lastname:req.body.Lastname,
-      emailid:req.body.emailid,
-      BusinessProfile:req.body.BusinessProfile,
-      CompanyName:req.body.CompanyName,
-      JobTitle:req.body.JobTitle,
-      street:req.body.street,
-      city:req.body.city,
-      State:req.body.State,
-      zip:req.body.zip,
-      Country:req.body.Country,
-      MobileNo:req.body.MobileNo,
-      Address:req.body.Address
-    })
+    return personaldetails.create(req.body)
   };
 });  
  
+exports.list1 = (function(req) {
+
+	let pageLimit = req.app.locals.site.pageLimit;
+	req = req.body;
+	let	page = req.page || 1,
+		limit = req.limit || pageLimit;
+
+	return personaldetails.findAndCountAll({
+		limit: limit,
+		offset: (page - 1) * limit,
+	}).then(data => {
+		return {
+			status: true,
+			data: data.rows,
+			totalData: data.count,
+			pageCount: Math.ceil(data.count / limit),
+			pageLimit: limit,
+			currentPage: parseInt(page)
+		};
+	});
+});
 exports.list = (function(req)  {
   return personaldetails.findAll({
   });
