@@ -1,6 +1,6 @@
  var express = require("express");
 var router = express.Router();
-var sequelize =require("../models/login");
+var sequelize =require("../controllers/login");
 
 router.post("/login", function(req, res, next) {
     sequelize.login(req).then(result => {

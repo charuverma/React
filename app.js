@@ -6,11 +6,14 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 
-
-var index = require('./routes/index');
-var post = require('./routes/post');
-var user = require('./routes/user');
-var register = require('./routes/register');
+/* 
+var index = require('./demo/index');
+var post = require('./demo/post'); */
+  var user = require('./routes/user'); 
+var register = require('./routes/register'); 
+var categories = require('./routes/categories');
+ var Roles = require('./routes/Roles'); 
+var products = require('./routes/products'); 
 
 var app = express();
 var cors = require('cors');
@@ -29,13 +32,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 //app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.locals.site = {
-	pageLimit: 10
+	pageLimit: 2
 };
 
-app.use('/index',index);
-app.use('/post',post);
- app.use('/user',user); 
- app.use('/register',register); 
+   app.use('/user',user);  
+ app.use('/register',register);  
+ app.use('/categories',categories); 
+   app.use('/Roles',Roles); 
+ app.use('/products',products); 
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

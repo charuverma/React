@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-var sequelize =require("../models/registerpage");
+var sequelize =require("../controllers/registerpage");
 
 
 router.post("/save", function(req, res, next) {
