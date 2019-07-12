@@ -52,3 +52,33 @@ exports.get = (function(req){
     }
   });
 });
+exports.list1 = (function(req) {
+  let pageLimit = req.app.locals.site.pageLimit;
+	req = req.body;
+	let	page = req.page || 1,
+	limit = req.limit || pageLimit;
+
+	return models.category.findAndCountAll({
+    attributes: [
+      'id',
+      'Categoryname',
+      'Status',
+      [
+        models.sequelize.literal('(Select Categoryname from categories where id=category.Parentcategory)'),
+        'Parent'
+      ]
+    ],
+    logging:true,
+		limit: limit,
+		offset: (page - 1) * limit,
+	}).then(data => {
+		return {
+			status: true,
+			data: data.rows,
+			totalData: data.count,
+			pageCount: Math.ceil(data.count / limit),
+			pageLimit: limit,
+			currentPage: parseInt(page)
+		};
+	});
+});

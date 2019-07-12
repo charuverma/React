@@ -13,6 +13,11 @@ router.post("/list", function(req, res, next) {
         res.send({result});
     }).catch(console.log);
 });
+router.post("/list1", function(req, res, next) {
+    sequelize.list1(req).then(result => {
+        res.send(result);
+    }).catch(console.log)
+});
 router.post("/delete", function(req, res, next) {
     sequelize.delete(req).then(result => {
         res.send({result});
